@@ -1,2 +1,2 @@
-# atal
-algoritmos desenvolvidos na disciplina de análise e técnicas de algoritmos
+# Análise e Técnicas de Algoritmos
+
