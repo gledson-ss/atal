@@ -30,7 +30,7 @@ void max_Heapify(int *vetor, int i, int tamVetor)
 
 void build_Heap(int *vetor, int tamVetor)
 {
-  
+
   for (int i = tamVetor / 2; i >= 0; i--)
   {
     max_Heapify(vetor, i, tamVetor);
@@ -51,9 +51,10 @@ void Heapsort(int *vetor, int tamVetor)
 }
 int main()
 {
-  int vetor[] = {44, 10, 30, 20, 160, 90};
-  Heapsort(vetor, 6);
-  for (int i = 0; i < 6; i++)
+  int vetor[] = {44, 10, 30, 20, 160, 90, 77};
+  int tam = sizeof(vetor) / sizeof(vetor[0]);
+  Heapsort(vetor, tam);
+  for (int i = 0; i < tam; i++)
   {
     cout << vetor[i] << " ";
   }
