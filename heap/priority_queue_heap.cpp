@@ -6,13 +6,12 @@ class Priority_queue_heap
 {
 
 private:
-  int swap(int *a, int *b)
+  void swap(int *a, int *b)
   {
     int aux;
     aux = *a;
     *a = *b;
     *b = aux;
-    return aux;
   }
   int get_element(int pos)
   {
@@ -120,13 +119,22 @@ int main()
 {
   Priority_queue_heap pqh;
 
-  pqh.insert(20);
-  pqh.insert(6);
-  pqh.insert(40);
-  pqh.insert(22);
-  pqh.insert(1);
+  int n;
+  int value;
 
-  pqh.print();
-  cout << pqh.heap_maximum() << endl;
+  cout << "digite a quantidade de elementos: ";
+  cin >> n;
+
+  for (size_t i = 0; i < n; i++)
+  {
+    cout << endl;
+    cout << "digite um valor para inserir: ";
+    cin >> value;
+    cout << endl;
+    pqh.insert(value);
+    cout << "lista atual com " << i + 1 << " elemento(s) com uma capacidade de " << n << " no total" << endl;
+    pqh.print();
+    cout << "maior valor da lista atualmente: " << pqh.heap_maximum() << endl;
+  }
   return 0;
 }
