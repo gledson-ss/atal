@@ -6,6 +6,9 @@ class Priority_queue_heap
 {
 
 private:
+  int heap_size;
+  int array_size;
+  int *A;
   void swap(int *a, int *b)
   {
     int aux;
@@ -13,6 +16,17 @@ private:
     *a = *b;
     *b = aux;
   }
+
+  void increase_key(int pos, int key)
+  {
+    this->A[pos] = key;
+    while ((pos > 1) && (this->A[this->get_element(pos)] < this->A[pos]))
+    {
+      this->swap(&this->A[pos], &this->A[this->get_element((pos))]);
+      pos = this->get_element(pos);
+    }
+  }
+
   int get_element(int pos)
   {
     if ((pos > 1) && (pos < this->array_size))
@@ -48,10 +62,6 @@ private:
   }
 
 public:
-  int heap_size;
-  int array_size;
-  int *A;
-
   Priority_queue_heap()
   {
     this->heap_size = 0;
@@ -59,23 +69,13 @@ public:
     this->A = (int *)malloc(10000 * sizeof(int));
   }
 
-  int extract_max()
+  int remove_heap_maximum()
   {
     int maxm = this->A[1];
     this->A[1] = this->A[heap_size];
     heap_size--;
     this->max_heapify(1);
     return maxm;
-  }
-
-  void increase_key(int pos, int key)
-  {
-    this->A[pos] = key;
-    while ((pos > 1) && (this->A[this->get_element(pos)] < this->A[pos]))
-    {
-      this->swap(&this->A[pos], &this->A[this->get_element((pos))]);
-      pos = this->get_element(pos);
-    }
   }
 
   void insert(int key)
@@ -85,27 +85,14 @@ public:
     this->increase_key(this->heap_size, key);
   }
 
-  int heap_maximum()
+  int get_heap_maximum()
   {
     return this->A[1];
   }
 
-  void print()
+  int get_array_size()
   {
-    cout << "[";
-
-    for (int i = 1; i <= this->heap_size; i++)
-    {
-      if (i != this->heap_size)
-      {
-        cout << this->A[i] << ", ";
-      }
-      else
-      {
-        cout << this->A[i];
-      }
-    }
-    cout << "]" << endl;
+    return this->heap_size;
   }
 };
 
@@ -115,22 +102,40 @@ int main()
 
   int n;
   int value;
-
+  int option;
   cout << "fila de prioridade utilizando heap" << endl;
 
-  cout << "digite a quantidade de elementos: ";
+  cout << "digite a quantidade de iterações, se quer inserir ou remover: ";
   cin >> n;
 
   for (size_t i = 0; i < n; i++)
   {
     cout << endl;
-    cout << "digite um valor para inserir: ";
-    cin >> value;
-    cout << endl;
-    pqh.insert(value);
-    cout << "lista atual com " << i + 1 << " elemento(s) com uma capacidade de " << n << " no total" << endl;
-    pqh.print();
-    cout << "maior valor da lista atualmente: " << pqh.heap_maximum() << endl;
+    cout << "inserir digite 1, remover digite 2" << endl;
+    cin >> option;
+    if (option == 1)
+    {
+      cout << "digite um valor: ";
+      cin >> value;
+      pqh.insert(value);
+      cout << endl;
+    }
+    else
+    {
+      if (!pqh.get_array_size())
+      {
+        cout << "não há elementos para remover" << endl;
+      }
+      else
+      {
+        pqh.remove_heap_maximum();
+      }
+    }
+
+    cout << "lista atual com " << i + 1 << " elemento(s)." << endl;
+    cout << "maior valor da lista atualmente: " << pqh.get_heap_maximum() << endl;
   }
+  cout << "lista final com tamanho " << pqh.get_array_size() << endl;
+
   return 0;
 }
