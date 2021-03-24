@@ -51,12 +51,25 @@ void Heapsort(int *vetor, int tamVetor)
 }
 int main()
 {
-  int vetor[] = {44, 10, 30, 20, 160, 90, 77};
-  int tam = sizeof(vetor) / sizeof(vetor[0]);
-  Heapsort(vetor, tam);
-  for (int i = 0; i < tam; i++)
+  int n;
+
+  cout << "digite a quantidade de elementos: ";
+  cin >> n;
+
+  int arr[n];
+
+  for (size_t i = 0; i < n; i++)
   {
-    cout << vetor[i] << " ";
+    cout << "insira um elemento: ";
+    cin >> arr[i];
+  }
+
+  Heapsort(arr, n);
+
+  cout << "arr ordenado pelo heapsort:" << endl;
+  for (int i = 0; i < n; i++)
+  {
+    cout << arr[i] << " ";
   }
   cout << endl;
 }
