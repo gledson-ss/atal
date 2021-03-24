@@ -136,6 +136,5 @@ int main()
     cout << "maior valor da lista atualmente: " << pqh.get_heap_maximum() << endl;
   }
   cout << "lista final com tamanho " << pqh.get_array_size() << endl;
-  cout << endl;
   return 0;
 }
