@@ -78,12 +78,6 @@ public:
     }
   }
 
-  void decrease_key(int pos, int key)
-  {
-    this->A[pos] = key;
-    this->max_heapify(pos);
-  }
-
   void insert(int key)
   {
     this->heap_size++;
@@ -121,6 +115,8 @@ int main()
 
   int n;
   int value;
+
+  cout << "fila de prioridade utilizando heap" << endl;
 
   cout << "digite a quantidade de elementos: ";
   cin >> n;
